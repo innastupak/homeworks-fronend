@@ -1,3 +1,5 @@
+// Есть 3 input. Выводить в textarea содержимое всех полей ввода через запятую. Использовать setInterval. 
+
 inputList = document.querySelectorAll("input");
 
 function setTextareaValue() {
