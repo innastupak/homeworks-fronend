@@ -28,3 +28,19 @@ function func(surname, name) {
 }
 
 func.apply(elem, ["Иванов", "Иван"]); //тут должно вывести 'привет, Иванов Иван'
+
+// Напишите в указанном месте конструкцию с методом bind() так, 
+// чтобы this внутри функции func всегда указывал на инпут из переменной elem.
+
+var elem = document.getElementById('elem');
+
+function func(surname, name) {
+	alert(this.value + ', ' + surname + ' ' + name);
+}
+
+//Тут напишите конструкцию с bind()
+var func = func.bind(elem);
+
+
+func('Иванов', 'Иван'); //тут должно вывести 'привет, Иванов Иван'
+func('Петров', 'Петр'); //тут должно вывести 'привет, Петров Петр'
