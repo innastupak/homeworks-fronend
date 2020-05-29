@@ -1,46 +1,57 @@
-// Добавьте в последнюю строчку метод call() так, чтобы на экран вывелось value инпута, лежащего в переменной elem.
+// Реализовать калькулятор, в котором есть слайдер (input type=”range”) и поле ввода (input type=”number”).
+// Изменяя состояние range меняется состояние поля ввода number. И наоборот.
 
-var elem = document.getElementById('elem');
+// Реализовать блок-диаграмму, который в пикселях будет отображать значение range. Например - range выбрали число 83,
+// высота блока-диаграммы будет 83 пикселя.
 
-function func() {
-    alert(this.value);
+// Alt Text
+// Красный блок - количество комиссии. Комиссия вычисляется по формуле:
+
+// (range < 20) -> 2%
+// (20 - 50)  -> 4%
+// (50 - 75)  -> 6%
+// (75 - 100)  -> 8%
+// Красный блок отображает количество комиссии. Например Значение выбора 100, комиссия будет 8%. Результирующая сумма: 108.
+// // Высота красного блока - 8px
+
+var inputRange = document.querySelector("input[type=range]");
+var inputNumber = document.querySelector("input[type=number]");
+var rangeDiagr = document.querySelector(".range");
+var comisDiagr = document.querySelector(".comission");
+
+function changeRangeDiagr() {
+    rangeDiagr.style.height = inputRange.value + "px";
 }
 
-func.call(elem); //тут должно вывести value инпута
-
-// Добавьте в последнюю строчку метод call() так, чтобы на экран вывелось 'привет, Иванов Иван'.
-// Слово 'привет' должно взяться из value инпута, а 'Иванов' и 'Иван' должны быть параметрами функциями.
-
-var elem = document.getElementById('elem');
-
-function func(surname, name) {
-    alert(this.value + ', ' + surname + ' ' + name);
+function changeComisDiagr() {
+    if (inputRange.value > 0 && inputRange.value <= 20 ){
+        comisDiagr.style.height = "2px";
+    } else if (inputRange.value > 20 && inputRange.value <= 50){
+        comisDiagr.style.height = "4px";
+    } else if (inputRange.value > 50 && inputRange.value <= 75){
+        comisDiagr.style.height = "6px";
+    } else if (inputRange.value > 75){
+        comisDiagr.style.height = "8px";
+    } else {
+        comisDiagr.style.height = "0";
+    }
 }
 
-func.call(elem, "Иванов", "Иван"); //тут должно вывести 'привет, Иванов Иван'
+inputRange.addEventListener("change", function () {
+    inputNumber.value = this.value;
+    changeRangeDiagr();
+    changeComisDiagr();
+});
 
-// 3.  Переделайте решение предыдущей задачи так, чтобы место метода call() был метод apply().
-
-var elem = document.getElementById('elem');
-
-function func(surname, name) {
-    alert(this.value + ', ' + surname + ' ' + name);
-}
-
-func.apply(elem, ["Иванов", "Иван"]); //тут должно вывести 'привет, Иванов Иван'
-
-// Напишите в указанном месте конструкцию с методом bind() так, 
-// чтобы this внутри функции func всегда указывал на инпут из переменной elem.
-
-var elem = document.getElementById('elem');
-
-function func(surname, name) {
-	alert(this.value + ', ' + surname + ' ' + name);
-}
-
-//Тут напишите конструкцию с bind()
-var func = func.bind(elem);
+inputNumber.addEventListener("input", function () {
+    inputRange.value = this.value;
+    changeRangeDiagr();
+    changeComisDiagr();
+});
 
 
-func('Иванов', 'Иван'); //тут должно вывести 'привет, Иванов Иван'
-func('Петров', 'Петр'); //тут должно вывести 'привет, Петров Петр'
+
+
+
+
+
