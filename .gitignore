@@ -1,3 +1,5 @@
 .*/node-modules
 /HW20/server/node_modules/
 /HW19/hillel-app/node_modules/
+/.idea/
+/HW9/.idea/
