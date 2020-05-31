@@ -27,7 +27,6 @@ for (let i = 0; i < counters.length; i++) {
     });
 }
 
-
 // Clear all counters
 var btnClear = document.getElementById("clear");
 
