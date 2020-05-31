@@ -5,41 +5,53 @@
 
 // 3. Создать кнопку setCounter(), который запрашивает id блока и устанавливает значение( в типе number ) в counter.
 
-if(localStorage.counterValue){
-    document.getElementById("counter").innerText = parseInt(localStorage.counterValue);
-    var counter = parseInt(localStorage.counterValue);;
-} else{
-	document.getElementById("counter").innerText = 0;
-    var counter = 0;
-};
 
-var btnPlus = document.getElementById("plus");
+var counters = document.querySelectorAll(".counter");
+var values = document.querySelectorAll(".value");
+var btnPlus = document.querySelectorAll(".plus");
 
-btnPlus.addEventListener("click", function(){
-    counter += 1;
-    document.getElementById("counter").innerText = counter;
-    localStorage.setItem("counterValue", counter); 
-});
+for (let i = 0; i < counters.length; i++) {
+    
+    if (localStorage != null && localStorage.getItem("counterValue" + counters[i].id)) {
+        values[i].innerText = localStorage.getItem("counterValue" + counters[i].id);
+    } else {
+        values[i].innerText = 0;
+    };
 
-var btnClear = document.getElementById("clear");
-
-btnClear.addEventListener("click", function(){
-    counter = 0;
-    document.getElementById("counter").innerText = counter;
-    localStorage.counterValue = 0;
-});
-
-// Ясли я правильно поняла 3 задание ))) то решение вот: 
-
-var btnSetCounter = document.getElementById("setcounter");
-
-function setCounter(idBlock){
-    var counterNew = parseInt(prompt("Введите число"));
-    counter = counterNew;
-    document.getElementById(idBlock).innerText = counterNew;
-    localStorage.counterValue = counterNew;
+// Increase counter +1
+   
+    btnPlus[i].addEventListener('click', function () {           
+        values[i].textContent = parseInt(values[i].textContent) + 1;
+        let counterId = counters[i].getAttribute("id");
+        localStorage.setItem("counterValue" + counterId, values[i].textContent);
+    });
 }
 
-btnSetCounter.addEventListener("click", function(){
-    setCounter("counter");
+
+// Clear all counters
+var btnClear = document.getElementById("clear");
+
+btnClear.addEventListener("click", function () {
+    values.forEach(value => {
+        value.innerText = 0;
+    })
+    localStorage.clear();
+});
+
+// Set counter's value
+let btnSetCounter = document.getElementById("setcounter");
+btnSetCounter.addEventListener("click", function () {
+    let counterId = parseInt(prompt("Введите Counter ID"));
+    let newValue;
+    if (isNaN(counterId) || counterId > counters.length ) {
+        alert ("Wrong ID");        
+    } else {
+        newValue = parseInt(prompt("Enter counter's value (number)"));
+        if (isNaN(newValue)){
+            alert ("Wrong counter's value.");
+        } else {
+            values[counterId - 1].innerText = newValue;
+            localStorage.setItem("counterValue" + counterId, newValue);
+        }        
+    }    
 });

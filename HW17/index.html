@@ -6,41 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-       
-        button{
+        button {
             width: 150px;
             height: 30px;
             margin-bottom: 5px;
         }
-        #counter{
-            width: 150px;
+
+        .counter div {
+            
             height: 30px;
             line-height: 30px;
             border: 1px solid #000;
             text-align: center;
         }
-       
+
+        .counter {
+            width: 150px;
+            margin: 15px 0;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #000;
+            ;
+
+        }
     </style>
-    
+
 </head>
 
 <body>
 
-    <div class="buttons">
 
-        <div id="plus">
-            <button>Plus 1</button>
-        </div>
-        <div id="clear">
-            <button>Clear</button>
-        </div>
-        <div id="setcounter">
-            <button>Set Number</button>
-        </div>
+  
 
+
+    
+
+    <div id="1" class="counter">
+        <p>Counter ID = 1</p>
+        <button class="plus">Click</button>
+        <div class="value"></div>
     </div>
 
-    <div id="counter"></div>
+    <div id="2" class="counter">
+        <p>Counter ID = 2</p>
+        <button class="plus">Click</button>
+        <div class="value"></div>
+    </div>
+    <div id="3" class="counter">
+        <p>Counter ID = 3</p>
+        <button class="plus">Click</button>
+        <div class="value"></div>
+    </div>
+
+
+    <div id="clear">
+        <button>Clear Counters</button>
+    </div>
+    <div id="setcounter">
+        <button>Set Counter</button>
+    </div>
+
+
+
 
     <script src="main.js"></script>
 </body>
