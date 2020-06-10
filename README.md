@@ -1,1 +1,1 @@
-# homeworks-fronend
+# homeworks-front-end
